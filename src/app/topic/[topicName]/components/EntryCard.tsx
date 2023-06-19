@@ -3,13 +3,18 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import EntryActions from './EntryActions';
+import { useParams } from 'next/navigation'
+import { Entry } from '@/types/EntryType';
+import { Topic } from '@/types/TopicType';
 
 interface PropTypes {
-    item:any,
+    item:Entry,
     topic:any
 }
 
 const EntryCard:React.FC<PropTypes> = ({ item, topic}) => {
+
+    const params = useParams();
 
     const linkControl = (text:string) => {
         const linkRegex = /\[(.+?)\s+([\w\s:\/\.]+?)\]/g;
@@ -31,11 +36,13 @@ const EntryCard:React.FC<PropTypes> = ({ item, topic}) => {
     return (
         <div className='flex flex-col w-full gap-5'>
             <p dangerouslySetInnerHTML={{ __html: entryText }}></p>
+            {(params.topicName || params.username) &&
             <EntryActions page={"topic"} topic={topic} item={item} />
+        }
             <div className='flex items-center justify-end text-sm gap-3'>
                 <div className='flex flex-col items-end'>
-                    <Link href={`/user/${item.owner.username}`} className="text-primary">{item.owner.username}</Link>
-                    <small className='text-customGray'>{new Date(item.createdAt).toLocaleString('tr-TR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })}</small>
+                    <Link href={`/user/${item.owner?.username}`} className="text-primary">{item?.owner?.username}</Link>
+                    <small className='text-customGray'>{new Date(item?.createdAt).toLocaleString('tr-TR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })}</small>
                 </div>
                 <Image className='w-8 h-8 rounded-full' alt="avatar" src={
               item?.owner?.avatar

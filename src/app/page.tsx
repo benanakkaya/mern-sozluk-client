@@ -1,30 +1,43 @@
-"use client"
-import store from "@/redux/store";
-import { fetchRandomTopic } from "@/redux/Topic/TopicSlice";
-import {useEffect} from "react"
-import { useDispatch } from "react-redux";
-import EntryList from "./topic/[topicName]/components/EntryList";
+"use client";
+import { fetchLastEntries } from "@/redux/Entry/EntrySlice";
+import store, { RootState } from "@/redux/store";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import LastEntries from "./components/LastEntriesList";
+import Loading from "./loading";
 
 export default function Home() {
-  
- 
   type AppDispatch = typeof store.dispatch;
 
   const dispatch = useDispatch<AppDispatch>();
 
-  const fetchTopic = async() => {
-      await dispatch(fetchRandomTopic());
-  }
+  const fetchEntries = async () => {
+    await dispatch(fetchLastEntries());
+  };
 
   useEffect(() => {
-      fetchTopic();
-  },[])
+    fetchEntries();
+  }, []);
 
+  const handleRefresh = async () => {
+    fetchEntries();
+  }
 
+  const {lastEntriesStatus} : {lastEntriesStatus:string} = useSelector((state:RootState) => state.entry);
 
   return (
-    <div className='flex flex-col gap-4 p-5'>
-    <EntryList />
-  </div>
-  )
+    <div className="flex flex-col gap-4 p-5">
+      <button
+        onClick={handleRefresh}
+        className="w-full py-2 text-xs border-[1px] text-primary"
+      >
+        son entryleri yenile
+      </button>
+      {lastEntriesStatus === "ready" ? 
+      <LastEntries />
+      : 
+      <Loading />
+    }
+    </div>
+  );
 }

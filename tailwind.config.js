@@ -14,6 +14,9 @@ module.exports = {
         customWhite: "#BDBDBD",
         customGray: "#494949"
       },
+      transitionProperty: {
+        'max-height': 'max-height'
+      }
     },
   },
   plugins: [],

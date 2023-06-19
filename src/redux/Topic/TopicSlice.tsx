@@ -1,11 +1,11 @@
-import { TopicType } from "@/types/TopicType";
+import { Topic } from "@/types/TopicType";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 
 export const fetchTopicData = createAsyncThunk(
   "topic/get-topic-data",
   async (values: { title: string, page: string }) => {
-    const response = await fetch("http://localhost:5000/topic/get-topic-data", {
+    const response = await fetch("https://mern-sozluk-backend.onrender.com/topic/get-topic-data", {
       method: "POST",
       cache: "no-cache",
       headers: {
@@ -26,26 +26,35 @@ export const fetchTopicData = createAsyncThunk(
 export const fetchRandomTopic = createAsyncThunk(
   "topic/get-random-topic",
   async () => {
-    const res = await fetch("http://localhost:5000/topic/random-topic");
+    const res = await fetch("https://mern-sozluk-backend.onrender.com/opic/random-topic");
     const data = await res.json(); // Veriyi bir kez alıyoruz
     return data; // Alınan veriyi döndürüyoruz
   }
 );
 
 export const fetchTopics = createAsyncThunk<any, void>("topic/get-topics", async () => {
-    const res = await fetch("http://localhost:5000/topic/get-recently-topics");
+    const res = await fetch("https://mern-sozluk-backend.onrender.com/topic/get-recently-topics");
     return await res.json();
   });
 
 interface TopicState {
-  currentTopic: any;
+  currentTopic: Topic;
   currentTopicStatus: string;
-  topicList: TopicType[];
+  topicList: Topic[];
   topicListStatus: string;
 }
 
 const initialState: TopicState = {
-  currentTopic: {},
+  currentTopic: {
+    _id: "",
+    title: "",
+    entries: [],
+    createdAt: "",
+    updatedAt: "",
+    __v: 0,
+    totalCount: 0,
+    totalPages: 0,
+  },
   currentTopicStatus: "idle",
   topicList: [],
   topicListStatus: "idle",
@@ -55,7 +64,7 @@ const topicSlice = createSlice({
   name: "topic",
   initialState,
   reducers: {
-    setCurrentTopic: (state, action: PayloadAction<any[]>) => {
+    setCurrentTopic: (state, action: PayloadAction<Topic>) => {
       state.currentTopic = action.payload;
     },
   },
@@ -63,20 +72,20 @@ const topicSlice = createSlice({
     builder.addCase(fetchTopicData.fulfilled, (state, action) => {
       state.currentTopic = action.payload;
       state.currentTopicStatus = "ready";
-    }).addCase(fetchTopicData.pending, (state,action) => {
+    }).addCase(fetchTopicData.pending, (state) => {
       state.currentTopicStatus = "pending";
     });
     builder.addCase(fetchRandomTopic.fulfilled, (state, action) => {
       state.currentTopic = action.payload;
       state.currentTopicStatus = "ready";
-    }).addCase(fetchRandomTopic.pending, (state,action) => {
+    }).addCase(fetchRandomTopic.pending, (state) => {
       state.currentTopicStatus = "pending";
     });
     builder
       .addCase(fetchTopics.fulfilled, (state, action) => {
         state.topicList = action.payload;
         state.topicListStatus = "ready";
-      }).addCase(fetchTopics.pending, (state, action) => {
+      }).addCase(fetchTopics.pending, (state) => {
         state.topicListStatus = "pending";
       });
   },

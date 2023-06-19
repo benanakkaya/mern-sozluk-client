@@ -1,13 +1,14 @@
 "use client"
-import store from '@/redux/store';
+import store, { RootState } from '@/redux/store';
 import { setShownUser } from '@/redux/User/UserSlice';
+import { User } from '@/types/UserType';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ProfileCard from './ProfileCard';
 import ProfileEntries from './ProfileEntries';
 
 interface PropTypes {
-    user: any
+    user: User
 }
 
 
@@ -15,14 +16,8 @@ const Profile: React.FC<PropTypes> = ({user}) => {
 
     type AppDispatch = typeof store.dispatch;
 
-    const dispatch = useDispatch<AppDispatch>();
 
-    React.useEffect(() => {
-        dispatch(setShownUser(user));
-    },[])
-
-
-  const { shownUser } = useSelector((state: any) => state.user);
+  const { shownUser } : {shownUser: User} = useSelector((state: RootState) => state.user);
 
 
   return (

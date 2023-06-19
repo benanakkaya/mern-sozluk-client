@@ -42,7 +42,7 @@ const EntryTool = () => {
     owner: string;
     text: string;
   }): Promise<any> => {
-    const res = await axios.post<ResponseData>("http://localhost:5000/entry/new-entry", {
+    const res = await axios.post<ResponseData>("https://mern-sozluk-backend.onrender.com/entry/new-entry", {
       topic: values.topic,
       owner: values.owner,
       text: values.text
@@ -107,9 +107,8 @@ const EntryTool = () => {
           });
       } else {
         const res = await axios
-          .post<ResponseData>("http://localhost:5000/topic/new-topic", { title: topic?.title })
+          .post<ResponseData>("https://mern-sozluk-backend.onrender.com/topic/new-topic", { title: topic?.title })
           .then(async (res) => {
-            const topicTitle = res.data.topic!.title;
             const values = {
               topic: res.data.topic!._id,
               owner: loggedUser?.id,

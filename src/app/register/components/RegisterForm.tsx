@@ -18,7 +18,7 @@ interface FormValues {
 
 const RegisterForm: React.FC = () => {
 
-  const [registerStatus, setRegisterStatus] = useState("idle");
+  const [registerStatus, setRegisterStatus] = useState<string>("idle");
   const router = useRouter();
 
 
@@ -34,7 +34,7 @@ const RegisterForm: React.FC = () => {
     onSubmit: async (values) => {
       setRegisterStatus("pending");
       try {
-        const res = await axios.post("http://localhost:5000/user/register", values);
+        const res = await axios.post("https://mern-sozluk-backend.onrender.com/user/register", values);
         router.push("/")
         toast.success(res.data.message);
         setRegisterStatus("ready");

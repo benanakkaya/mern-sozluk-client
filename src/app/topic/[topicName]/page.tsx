@@ -1,7 +1,8 @@
 "use client"
 import EntryTool from "@/app/components/EntryTool";
-import store from "@/redux/store";
+import store, { RootState } from "@/redux/store";
 import { fetchTopicData } from "@/redux/Topic/TopicSlice";
+import { Topic } from "@/types/TopicType";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import EntryList from "./components/EntryList";
@@ -18,7 +19,7 @@ const TopicPage: React.FC<props> = (props) => {
 
   const [currentPage,setCurrentPage] = useState(props?.searchParams?.page);
 
-  const {currentTopic} = useSelector((state:any) => state.topic)
+  const {currentTopic} : {currentTopic: Topic} = useSelector((state:RootState) => state.topic)
 
   const fetchTopic = async () => {
       await dispatch(fetchTopicData({title: props?.params?.topicName, page: props?.searchParams?.page}));
@@ -37,7 +38,7 @@ const TopicPage: React.FC<props> = (props) => {
 
 
   return (
-    <div className="flex flex-col gap-6 p-5">
+    <div className="flex flex-col gap-6 p-4 lg:p-5">
       <PaginationTool setCurrentPage={setCurrentPage} currentPage={currentPage}  />
       <EntryList />
       <PaginationTool setCurrentPage={setCurrentPage} currentPage={currentPage}  />

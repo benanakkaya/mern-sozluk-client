@@ -1,37 +1,47 @@
 "use client";
-import store from "@/redux/store";
-import { fetchRandomTopic } from "@/redux/Topic/TopicSlice";
+import { fetchRandomEntry } from "@/redux/Entry/EntrySlice";
+import store, { RootState } from "@/redux/store";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import EntryList from "../topic/[topicName]/components/EntryList";
+import LastEntriesCard from "../components/LastEntriesList/components/LastEntriesCard";
+import Loading from "../loading";
 
 const RastgelePage = () => {
+  type AppDispatch = typeof store.dispatch;
 
-    type AppDispatch = typeof store.dispatch;
+  const dispatch = useDispatch<AppDispatch>();
 
-    const dispatch = useDispatch<AppDispatch>();
+  const { randomEntryStatus }: { randomEntryStatus: string } = useSelector(
+    (state: RootState) => state.entry
+  );
 
-    const fetchTopic = async() => {
-        const bok = await dispatch(fetchRandomTopic());
-        console.log(bok)
-    }
+  const fetchEntry = async () => {
+    await dispatch(fetchRandomEntry());
+  };
 
-    useEffect(() => {
-        fetchTopic();
-    },[])
+  useEffect(() => {
+    fetchEntry();
+  }, []);
 
-    const handleAgainFetch = () => {
-        fetchTopic();
-    }
+  const handleAgainFetch = () => {
+    fetchEntry();
+  };
 
-
+  const { randomEntry } = useSelector((state: any) => state.entry);
 
   return (
     <div className="flex flex-col gap-4 p-5">
-      <button onClick={handleAgainFetch} className="w-full py-2 text-xs border-[1px] text-primary">
-        yeniden getir
+      <button
+        onClick={handleAgainFetch}
+        className="w-full py-2 text-xs border-[1px] text-primary"
+      >
+        rastgele entry getir
       </button>
-      <EntryList />
+      {randomEntryStatus === "ready" ? (
+        <LastEntriesCard entry={randomEntry} />
+      ) : (
+        <Loading />
+      )}
     </div>
   );
 };

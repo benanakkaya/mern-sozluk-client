@@ -1,6 +1,7 @@
 "use client";
-import store from "@/redux/store";
-import { fetchUserProfile } from "@/redux/User/UserSlice";
+import store, { RootState } from "@/redux/store";
+import { fetchUserProfile, LoggedUser } from "@/redux/User/UserSlice";
+import { User } from "@/types/UserType";
 import axios from "axios";
 import Image from "next/image";
 import React, { useRef, useState } from "react";
@@ -9,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
 interface PropTypes {
-  user: any;
+  user: User;
 }
 
 const AvatarSelector: React.FC<PropTypes> = ({ user }) => {
@@ -21,7 +22,7 @@ const AvatarSelector: React.FC<PropTypes> = ({ user }) => {
 
   const avatarRef = useRef<any>(null);
 
-  const { loginned, loggedUser } = useSelector((state: any) => state.user);
+  const { loginned, loggedUser } : {loginned:boolean, loggedUser: LoggedUser}= useSelector((state: RootState) => state.user);
 
   const handleClick = () => {
     if (loginned && loggedUser?.id === user?._id) {
@@ -29,11 +30,11 @@ const AvatarSelector: React.FC<PropTypes> = ({ user }) => {
     }
   };
 
-  const handleChange = (e: any) => {
+  const handleChange = (image: File) => {
     if (
       confirm("Seçtiğiniz resmi avatarınız olarak güncellemek istiyor musunuz?")
     ) {
-      updateUserAvatar(e.target.files[0]);
+      updateUserAvatar(image);
     }
   };
 
@@ -60,12 +61,11 @@ const AvatarSelector: React.FC<PropTypes> = ({ user }) => {
 
   const updateDatabase = async (avatar: any) => {
     const res = await axios
-      .post("http://localhost:5000/user/set-avatar", {
+      .post("https://mern-sozluk-backend.onrender.com/user/set-avatar", {
         avatar,
         user: user?._id,
       })
       .then((res) => {
-        console.log(loggedUser?.username);
         dispatch(fetchUserProfile(loggedUser?.username));
         toast.success(res.data.message);
         setAvatarStatus("idle");
@@ -109,7 +109,7 @@ const AvatarSelector: React.FC<PropTypes> = ({ user }) => {
         </div>
       )}
       <input
-        onChange={(e: any) => handleChange(e)}
+        onChange={(e: any) => handleChange(e.target.files[0])}
         accept=".jpg, .jpeg, .png"
         className="hidden"
         type="file"

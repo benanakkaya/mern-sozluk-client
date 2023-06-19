@@ -1,11 +1,11 @@
-import Image from 'next/image';
+import { User } from '@/types/UserType';
 import Link from 'next/link';
 import React from 'react';
 import { RiUserFollowFill } from 'react-icons/ri';
 import AvatarSelector from './AvatarSelector';
 
 interface ProfileCardProps {
-  user: any;
+  user: User;
 }
 
 const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {

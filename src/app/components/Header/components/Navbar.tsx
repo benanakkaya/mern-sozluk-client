@@ -5,69 +5,69 @@ const Navbar = () => {
 
 
     return (
-        <nav className='flex items-center gap-2 h-12'>
-            <ul className='flex items-center justify-between text-sm w-full h-full'>
-                <li className='hover:border-b-2 hover:border-b-primary w-[100px] h-full'>
+        <nav className='flex  items-center gap-1 lg:gap-2 md:h-[48px]'>
+            <ul className='flex flex-col gap-2 md:flex-row items-center justify-between text-sm w-full h-full'>
+                <li className='hover:border-b-2 hover:border-b-primary w-full h-full'>
                     <Link className="flex items-center justify-center w-full h-full" href="/">
-                        son yazılanlar
+                        son entryler
                     </Link>
                 </li>
-                <li className='hover:border-b-2 hover:border-b-primary w-[100px] h-full'>
+                <li className='hover:border-b-2 hover:border-b-primary w-full h-full'>
                     <Link className="flex items-center justify-center w-full h-full" href="/rastgele">
-                        rastgele başlık
+                        rastgele
                     </Link>
                 </li>
-                <li className='hover:border-b-2 hover:border-b-primary w-[100px] h-full'>
-                    <Link className="flex items-center justify-center w-full h-full" href="/#">
-                        #spor
+                <li className='hover:border-b-2 hover:border-b-primary w-full h-full'>
+                    <Link className="flex items-center justify-center w-full h-full" href="/">
+                        #empty
                     </Link>
                 </li>
-                <li className='hover:border-b-2 hover:border-b-primary w-[100px] h-full'>
-                    <Link className="flex items-center justify-center w-full h-full" href="/#">
-                        #siyaset
+                <li className='hover:border-b-2 hover:border-b-primary w-full h-full'>
+                    <Link className="flex items-center justify-center w-full h-full" href="/">
+                        #empty
                     </Link>
                 </li>
-                <li className='hover:border-b-2 hover:border-b-primary w-[100px] h-full'>
-                    <Link className="flex items-center justify-center w-full h-full" href="/#">
-                        #ilişkiler
+                <li className='hover:border-b-2 hover:border-b-primary w-full h-full'>
+                    <Link className="flex items-center justify-center w-full h-full" href="/">
+                        #empty
                     </Link>
                 </li>
-                <li className='hover:border-b-2 hover:border-b-primary w-[100px] h-full'>
-                    <Link className="flex items-center justify-center w-full h-full" href="/#">
-                        #ekonomi
+                <li className='hover:border-b-2 hover:border-b-primary w-full h-full'>
+                    <Link className="flex items-center justify-center w-full h-full" href="/">
+                        #empty
                     </Link>
                 </li>
-                <li className='hover:border-b-2 hover:border-b-primary w-[100px] h-full'>
-                    <Link className="flex items-center justify-center w-full h-full" href="/#">
-                        #eğitim
+                <li className='hover:border-b-2 hover:border-b-primary w-full h-full'>
+                    <Link className="flex items-center justify-center w-full h-full" href="/">
+                        #empty
                     </Link>
                 </li>
-                <li className='hover:border-b-2 hover:border-b-primary w-[100px] h-full'>
-                    <Link className="flex items-center justify-center w-full h-full" href="/#">
-                        #troll
+                <li className='hover:border-b-2 hover:border-b-primary w-full h-full'>
+                    <Link className="flex items-center justify-center w-full h-full" href="/">
+                        #empty
                     </Link>
                 </li>
-                <li className='hover:border-b-2 hover:border-b-primary w-[100px] h-full group relative flex items-center justify-center cursor-pointer'>
+                <li className='hover:border-b-2 hover:border-b-primary w-full h-full group relative hidden md:flex items-center justify-center cursor-pointer'>
                     ...
                     <ul className='hidden group-hover:flex flex-col absolute left-0 top-full border-[1px] bg-dark z-20 border-customGray '>
-                        <li className='hover:text-primary w-[100px] h-full py-2'>
-                            <Link className="flex items-center justify-center w-full h-full" href="/#">
-                                #troll
+                        <li className='hover:text-primary w-full h-full py-2'>
+                            <Link className="flex items-center justify-center w-full h-full" href="/">
+                                #empty
                             </Link>
                         </li>
-                        <li className='hover:text-primary w-[100px] h-full py-2'>
-                            <Link className="flex items-center justify-center w-full h-full" href="/#">
-                                #troll
+                        <li className='hover:text-primary w-full h-full py-2'>
+                            <Link className="flex items-center justify-center w-full h-full" href="/">
+                                #empty
                             </Link>
                         </li>
-                        <li className='hover:text-primary w-[100px] h-full py-2'>
-                            <Link className="flex items-center justify-center w-full h-full" href="/#">
-                                #troll
+                        <li className='hover:text-primary w-full h-full py-2'>
+                            <Link className="flex items-center justify-center w-full h-full" href="/">
+                                #empty
                             </Link>
                         </li>
-                        <li className='hover:text-primary w-[100px] h-full py-2'>
-                            <Link className="flex items-center justify-center w-full h-full" href="/#">
-                                #troll
+                        <li className='hover:text-primary w-full h-full py-2'>
+                            <Link className="flex items-center justify-center w-full h-full" href="/">
+                                #empty
                             </Link>
                         </li>
                     </ul>

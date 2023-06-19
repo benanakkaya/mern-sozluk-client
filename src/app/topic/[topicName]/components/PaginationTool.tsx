@@ -1,22 +1,25 @@
 "use client";
-import React, { useState } from "react";
-import {useRouter} from "next/navigation";
+import React from "react";
+import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
+import { Topic } from "@/types/TopicType";
 
 interface PropTypes {
   currentPage: number;
-  setCurrentPage:React.Dispatch<any>;
+  setCurrentPage: React.Dispatch<any>;
 }
 
-const PaginationTool: React.FC<PropTypes> = ({ currentPage,setCurrentPage }) => {
+const PaginationTool: React.FC<PropTypes> = ({
+  currentPage,
+  setCurrentPage,
+}) => {
+  const { currentTopic: topic }: { currentTopic: Topic } = useSelector(
+    (state: any) => state.topic
+  );
 
+  const router = useRouter();
 
-    const {currentTopic: topic} = useSelector((state:any) => state.topic);
-
-    const router = useRouter();
-
-
-  const totalPages = topic?.totalPages;
+  const totalPages : number = topic?.totalPages;
 
   let pages = [];
 
@@ -24,10 +27,10 @@ const PaginationTool: React.FC<PropTypes> = ({ currentPage,setCurrentPage }) => 
     pages.push(i);
   }
 
-  const handlePage = (value:string) => {
+  const handlePage = (value: string) => {
     setCurrentPage(Number(value));
-    router.push(`${topic?.title}?page=${value}`)
-  }
+    router.push(`${topic?.title}?page=${value}`);
+  };
 
 
   return (
@@ -35,9 +38,17 @@ const PaginationTool: React.FC<PropTypes> = ({ currentPage,setCurrentPage }) => 
       {totalPages > 1 && (
         <div className="w-full flex items-center justify-end">
           <div className="flex items-center gap-1">
-            <select onChange={(e:any) => handlePage(e.target.value)} className="bg-dark border-[1px] border-white p-1 rounded-md text-xs h-max">
-              {pages.map((page) => (
-                <option  selected={currentPage == page ? true : false} value={page}>{page}</option>
+            <select
+              onChange={(e: any) => handlePage(e.target.value)}
+              className="bg-dark border-[1px] border-white p-1 rounded-md text-xs h-max"
+            >
+              {pages.map((page: number) => (
+                <option
+                  selected={currentPage == page ? true : false}
+                  value={page}
+                >
+                  {page}
+                </option>
               ))}
             </select>
             <span>/</span>

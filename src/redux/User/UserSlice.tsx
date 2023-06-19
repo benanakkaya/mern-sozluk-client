@@ -1,21 +1,41 @@
+import { User } from "@/types/UserType";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const fetchUserProfile = createAsyncThunk("user/get-user-profile",async (username:string) => {
-  const res = await axios.post("http://localhost:5000/user/get-user-profile", {username});
+  const res = await axios.post("https://mern-sozluk-backend.onrender.com/user/get-user-profile", {username});
   return res.data;
 })
 
 interface UserState {
   loginned: boolean;
-  loggedUser: {id:string,username:string};
-  shownUser: any
+  loggedUser: LoggedUser
+  shownUser: User
+}
+
+export interface LoggedUser {
+  id:string;
+  username:string;
 }
 
 const initialState: UserState = {
   loginned: false,
   loggedUser: {id:"",username:""},
-  shownUser: {}
+  shownUser:  {
+    avatar: "",
+    birthday: "",
+    confirmed: false,
+    createdAt: "",
+    email: "",
+    entries: [],
+    favorites: [],
+    gender: "",
+    updatedAt: "",
+    userType: "",
+    username: "",
+    __v: 0,
+    _id: "",
+  }
 };
 const userSlice = createSlice({
   name: "user",
@@ -27,7 +47,7 @@ const userSlice = createSlice({
     setLoggedUser: (state, action: PayloadAction<{id:string,username:string}>) => {
       state.loggedUser = action.payload;
     },
-    setShownUser: (state,action : any) => {
+    setShownUser: (state,action: PayloadAction<User>) => {
       state.shownUser = action.payload;
     }
   },

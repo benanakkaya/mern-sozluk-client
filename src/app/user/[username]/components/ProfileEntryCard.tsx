@@ -1,11 +1,12 @@
 
 import EntryActions from '@/app/topic/[topicName]/components/EntryActions';
+import { Entry } from '@/types/EntryType';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
 interface EntryCardProps {
-  entry: any
+  entry: Entry
 }
 
 const ProfileEntryCard: React.FC<EntryCardProps> = ({ entry}) => {

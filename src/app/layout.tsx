@@ -6,8 +6,6 @@ import ToastifyContainer from "./components/ToastifyContainer";
 import StoreProvider from "@/redux/StoreProvider";
 import { useAuth } from "@/hooks/auth";
 import TopicList from "./components/TopicList";
-import store from "@/redux/store";
-import { fetchTopicData, fetchTopics } from "@/redux/Topic/TopicSlice";
 
 const roboto = Roboto({
   weight: ["400", "700"],
@@ -24,9 +22,6 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  await store.dispatch(fetchTopics());
-
-  const { topicList, topicListStatus } = store.getState().topic;
 
   const { loginStatus, user } = await useAuth.fromServer();
 
@@ -39,19 +34,15 @@ export default async function RootLayout({
               loginned: loginStatus,
               loggedUser: user,
             },
-            topic: {
-              topicList,
-              topicListStatus,
-            },
           }}
         >
           <Header />
           <ToastifyContainer />
-          <div className="grid grid-cols-5">
-            <div className="col-span-1 hidden md:block">
+          <div className="flex flex-col-reverse lg:grid lg:grid-cols-5">
+            <div className="lg:col-span-1">
               <TopicList />
             </div>
-            <div className="col-span-5 md:col-span-4 relative">{children}</div>
+            <div className="lg:col-span-4 relative">{children}</div>
           </div>
         </StoreProvider>
       </body>

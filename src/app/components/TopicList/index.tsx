@@ -5,7 +5,7 @@ import List from './components/List';
 const TopicList:React.FC = () => {
 
     return (
-        <aside>
+        <aside className='h-full'>
            <List />
         </aside>
     )

@@ -1,10 +1,11 @@
 "use client"
+import { User } from '@/types/UserType';
 import React, { useState } from 'react';
 import ProfileEntryCard from './ProfileEntryCard';
 // ParamsType tipini tanımladığınız tür dosyasını içe aktarın
 
 interface ProfileEntriesProps {
-  user: any;
+  user: User;
 }
 
 const ProfileEntries: React.FC<ProfileEntriesProps> = ({user}) => {
