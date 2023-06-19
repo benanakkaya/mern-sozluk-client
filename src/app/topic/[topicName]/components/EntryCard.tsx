@@ -24,7 +24,7 @@ const EntryCard:React.FC<PropTypes> = ({ item, topic}) => {
 
     const bkzControl = (text:string) => {
         const linkRegex = /\(bkz:\s+([^\)]+[\w])\)/g;
-        const linkTemplate = '(bkz: <a class="text-primary" href="http://localhost:3000/topic/$1">$1</a>)';
+        const linkTemplate = '(bkz: <a class="text-primary" href="https://mern-sozluk.vercel.app/topic/$1">$1</a>)';
         return text.replace(linkRegex, linkTemplate);
     }
 
