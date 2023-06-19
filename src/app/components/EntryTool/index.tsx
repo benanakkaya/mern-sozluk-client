@@ -1,6 +1,6 @@
 "use client"
 import store from '@/redux/store';
-import { fetchTopicData } from '@/redux/Topic/TopicSlice';
+import { fetchTopicData, fetchTopics } from '@/redux/Topic/TopicSlice';
 import axios  from 'axios';
 import { useRouter } from 'next/navigation';
 import React, { useRef, useState } from 'react';
@@ -96,6 +96,7 @@ const EntryTool = () => {
         };
         await createNewEntry(values)
           .then((res:any) => {
+            dispatch(fetchTopics());
             toast.success(res.message);
             setEntryText("");
             dispatch(fetchTopicData({title:topic?.title,page:topic?.totalPages ?? 1}));
@@ -116,6 +117,7 @@ const EntryTool = () => {
             };
             await createNewEntry(values)
               .then((res:any) => {
+                dispatch(fetchTopics());
                 setEntryText("");
                 toast.success(res.message);
                 dispatch(fetchTopicData({title:topic.title,page:topic.totalPages}));
