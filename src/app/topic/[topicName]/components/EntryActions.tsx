@@ -8,8 +8,7 @@ import { AiFillLike, AiFillDislike, AiFillStar } from "react-icons/ai";
 import { MdReport, MdDelete } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { useSearchParams } from "next/navigation";
-import { Topic } from "@/types/TopicType";
+import { useParams, useSearchParams } from "next/navigation";
 import { Entry } from "@/types/EntryType";
 
 interface PropTypes {
@@ -26,13 +25,17 @@ const EntryActions: React.FC<PropTypes> = ({ item, topic, page }) => {
     (state: RootState) => state.user
   );
 
-  const params = useSearchParams();
+  const searchParams = useSearchParams();
 
-  const currentPage = params.get("page") ?? "1";
+  const {username} = useParams();
 
+  const currentPage = searchParams.get("page") ?? "1";
+
+  
   type AppDispatch = typeof store.dispatch;
 
   const dispatch = useDispatch<AppDispatch>();
+
 
   const handleLike = async () => {
     if (loginned) {
@@ -46,7 +49,7 @@ const EntryActions: React.FC<PropTypes> = ({ item, topic, page }) => {
           if (page === "topic") {
             dispatch(fetchTopicData({ title: topic.title, page: currentPage }));
           } else {
-            dispatch(fetchUserProfile(loggedUser.username));
+            dispatch(fetchUserProfile(username));
           }
         });
     } else {
@@ -66,7 +69,7 @@ const EntryActions: React.FC<PropTypes> = ({ item, topic, page }) => {
           if (page === "topic") {
             dispatch(fetchTopicData({ title: topic.title, page: currentPage }));
           } else {
-            dispatch(fetchUserProfile(loggedUser.username));
+            dispatch(fetchUserProfile(username));
           }
         });
     } else {
@@ -85,8 +88,8 @@ const EntryActions: React.FC<PropTypes> = ({ item, topic, page }) => {
           toast.success(res.data.message);
           if (page === "topic") {
             dispatch(fetchTopicData({ title: topic.title, page: currentPage }));
-          } else {
-            dispatch(fetchUserProfile(loggedUser.username));
+          } else { 
+            dispatch(fetchUserProfile(username));
           }
         });
     } else {
@@ -107,7 +110,7 @@ const EntryActions: React.FC<PropTypes> = ({ item, topic, page }) => {
           if (page === "topic") {
             dispatch(fetchTopicData({ title: topic.title, page: currentPage }));
           } else {
-            dispatch(fetchUserProfile(loggedUser.username));
+            dispatch(fetchUserProfile(username));
           }
         })
         .catch((err: any) => {
