@@ -49,7 +49,7 @@ const Navbar = () => {
                 </li>
                 <li className='hover:border-b-2 hover:border-b-primary w-full h-full group relative hidden md:flex items-center justify-center cursor-pointer'>
                     ...
-                    <ul className='hidden group-hover:flex flex-col absolute left-0 top-full border-[1px] bg-dark z-20 border-customGray '>
+                    <ul className='w-full hidden group-hover:flex flex-col absolute left-0 top-full border-[1px] bg-dark z-20 border-customGray '>
                         <li className='hover:text-primary w-full h-full py-2'>
                             <Link className="flex items-center justify-center w-full h-full" href="/">
                                 #empty

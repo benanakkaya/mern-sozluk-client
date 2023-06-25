@@ -47,11 +47,11 @@ const Search = () => {
             <ul className='absolute top-full left-0 bg-customGray w-full'>
                 {/* //input value aramada bulunamadı ise öneri olarak oluşturmak ister misiniz gibi bir öneri sunuyor */}
                 {searchIndex.length > 2 && itemControl() &&
-                    <li key={1} onClick={handleClick} className='p-2'><Link href={`/topic/${searchIndex}`}>({searchIndex} adında bir başlık yok {false && <span>, tıkla oluştur</span>})</Link></li>
+                    <li key={1} onClick={handleClick} className='p-2 w-full'><Link className='' href={`/topic/${searchIndex}`}>({searchIndex} adında bir başlık yok {false && <span>, tıkla oluştur</span>})</Link></li>
                 }
                 {/* //bulunan sonuçlar listeleniyor */}
                 {suggestions.map((topic:any) => (
-                    <li key={topic._id} onClick={handleClick} className='p-2'><Link href={`/topic/${topic.title}`}>{topic.title}</Link></li>
+                    <li key={topic._id} onClick={handleClick} className='p-2 w-full'><Link href={`/topic/${topic.title}`}>{topic.title}</Link></li>
                 ))}
             </ul>
         </div>
