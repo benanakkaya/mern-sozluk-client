@@ -27,7 +27,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${roboto.className} bg-dark text-white`}>
+      <body className={`${roboto.className} bg-dark text-white container`}>
         <StoreProvider
           preloadedState={{
             user: {
