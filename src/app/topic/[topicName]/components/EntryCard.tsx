@@ -1,7 +1,7 @@
 "use client"
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import EntryActions from './EntryActions';
 import { useParams } from 'next/navigation'
 import { Entry } from '@/types/EntryType';
@@ -16,6 +16,8 @@ const EntryCard:React.FC<PropTypes> = ({ item, topic}) => {
 
     const params = useParams();
 
+    const [entry,setEntry] = useState<string>("");
+
     const linkControl = (text:string) => {
         const linkRegex = /\[(.+?)\s+([\w\s:\/\.]+?)\]/g;
         const linkTemplate = '<a class="text-primary" href="$1">$2</a>';
@@ -28,14 +30,17 @@ const EntryCard:React.FC<PropTypes> = ({ item, topic}) => {
         return text.replace(linkRegex, linkTemplate);
     }
 
-    let entryText = linkControl(item.text);
-    entryText = bkzControl(entryText);
-
+    
+    useEffect(() => {
+        let entryText = linkControl(item.text);
+        entryText = bkzControl(entryText);
+        setEntry(entryText);;
+    },[])
 
 
     return (
         <div className='flex flex-col w-full gap-5'>
-            <p dangerouslySetInnerHTML={{ __html: entryText }}></p>
+            <p dangerouslySetInnerHTML={{ __html: entry }}></p>
             {(params.topicName || params.username) &&
             <EntryActions page={"topic"} topic={topic} item={item} />
         }
