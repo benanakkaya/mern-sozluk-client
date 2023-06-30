@@ -18,7 +18,7 @@ const LastEntriesCard:React.FC<PropTypes> = ({entry}) => {
       >
         {entry?.topic?.title}
       </Link>
-      <EntryCard topic={entry?.topic} key={entry._id} item={entry} />
+      <EntryCard page="last" topic={entry?.topic} key={entry._id} item={entry} />
     </div>
   );
 };
