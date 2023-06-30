@@ -9,10 +9,11 @@ import { Topic } from '@/types/TopicType';
 
 interface PropTypes {
     item:Entry,
-    topic:any
+    topic:any,
+    page: string
 }
 
-const EntryCard:React.FC<PropTypes> = ({ item, topic}) => {
+const EntryCard:React.FC<PropTypes> = ({ item, topic,page}) => {
 
     const params = useParams();
 
@@ -42,7 +43,7 @@ const EntryCard:React.FC<PropTypes> = ({ item, topic}) => {
         <div className='flex flex-col w-full gap-5'>
             <p dangerouslySetInnerHTML={{ __html: entry }}></p>
             {(params.topicName || params.username) &&
-            <EntryActions page={"topic"} topic={topic} item={item} />
+            <EntryActions page={page} topic={topic} item={item} />
         }
             <div className='flex items-center justify-end text-sm gap-3'>
                 <div className='flex flex-col items-end'>

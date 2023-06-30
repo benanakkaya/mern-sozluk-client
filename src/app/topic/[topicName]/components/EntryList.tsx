@@ -21,7 +21,7 @@ const EntryList: React.FC = () => {
           </Link>
           {currentTopic?.entries?.length > 0 ? (
             currentTopic?.entries?.map((item: any) => (
-              <EntryCard topic={currentTopic} key={item._id} item={item} />
+              <EntryCard page={"topic"} topic={currentTopic} key={item._id} item={item} />
             ))
           ) : (
             <div className="italic">Bu başlığa henüz bir entry girilmemiş.</div>

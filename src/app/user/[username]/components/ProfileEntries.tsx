@@ -57,7 +57,7 @@ const ProfileEntries: React.FC<ProfileEntriesProps> = ({ user }) => {
                 <Link href={`/topic/${entry?.topic?.title}`} passHref>
                   <div className="text-primary">{entry?.topic?.title}</div>
                 </Link>
-                <EntryCard topic={entry.topic} item={entry} />
+                <EntryCard page={"profile"} topic={entry.topic} item={entry} />
               </div>
             ))
         : user?.entries
@@ -69,7 +69,7 @@ const ProfileEntries: React.FC<ProfileEntriesProps> = ({ user }) => {
                 <Link href={`/topic/${entry?.topic?.title}`} passHref>
                   <div className="text-primary">{entry?.topic?.title}</div>
                 </Link>
-                <EntryCard topic={entry.topic} item={entry} />
+                <EntryCard page={"profile"} topic={entry.topic} item={entry} />
               </div>
             ))}
       {((showFavorites === true && user?.favorites?.length > entryLimit) ||
