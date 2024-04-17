@@ -34,16 +34,15 @@ const UserButtons = () => {
     return (
         <>
             {loginned === false ?
-            //  Giriş yapılmamış ise Giriş Yap  ve Kayıt Ol gösteriliyor
+            //  Giriş yapılmamış ise "Giriş Yap" ve "Kayıt Ol" gösteriliyor
                 <div className='text-sm flex items-center justify-between gap-2 w-full md:w-auto'>
                     <Link className='text-primary px-2 py-1' href="/login">Giriş Yap</Link>
                     <Link className='text-white px-2 py-1' href="/register">Kayıt Ol</Link>
                 </div>
                 :
-                //Eğer giriş yapılmış ise kullanıcının profilini görebildiği ben, henüz projeye dahil etmediğim mesaj ve çıkış buttonu gösteriliyor
+                //Eğer giriş yapılmış ise kullanıcının profilini görebildiği "ben" ve "çıkış" buttonları gösteriliyor
                 <div className='flex items-center justify-between gap-2 w-full md:w-auto'>
                     <Link className='px-2 py-1' href={`/user/${loggedUser.username}`}>ben</Link>
-                    <Link className='px-2 py-1' href="/#">mesaj(?)</Link>
                     <button onClick={handleLogout} className='bg-primary text-white rounded-md px-2 py-1'>çıkış</button>
                 </div>
             }

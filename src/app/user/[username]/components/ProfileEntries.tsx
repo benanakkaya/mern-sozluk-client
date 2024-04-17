@@ -53,7 +53,7 @@ const ProfileEntries: React.FC<ProfileEntriesProps> = ({ user }) => {
             .reverse()
             .slice(0, entryLimit)
             .map((entry: any) => (
-              <div className="flex flex-col gap-3">
+              <div key={entry._id}  className="flex flex-col gap-3">
                 <Link href={`/topic/${entry?.topic?.title}`} passHref>
                   <div className="text-primary">{entry?.topic?.title}</div>
                 </Link>
@@ -65,7 +65,7 @@ const ProfileEntries: React.FC<ProfileEntriesProps> = ({ user }) => {
             .reverse()
             .slice(0, entryLimit)
             .map((entry: any) => (
-              <div className="flex flex-col gap-3">
+              <div key={entry._id} className="flex flex-col gap-3">
                 <Link href={`/topic/${entry?.topic?.title}`} passHref>
                   <div className="text-primary">{entry?.topic?.title}</div>
                 </Link>

@@ -11,8 +11,8 @@ export default function Home() {
 
   const dispatch = useDispatch<AppDispatch>();
 
-  const fetchEntries = async () => {
-    await dispatch(fetchLastEntries());
+  const fetchEntries = () => {
+    dispatch(fetchLastEntries());
   };
 
   useEffect(() => {

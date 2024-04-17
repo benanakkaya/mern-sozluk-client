@@ -4,18 +4,15 @@ import store, { RootState } from "@/redux/store";
 import { fetchTopics } from "@/redux/Topic/TopicSlice";
 import { Topic } from "@/types/TopicType";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BiRefresh } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
-import { boolean } from "yup";
+
 
 const List = () => {
   type AppDispatch = typeof store.dispatch;
 
   const dispatch = useDispatch<AppDispatch>();
-
-  const [mobileListVisiblity, setMobileListVisiblity] =
-    useState<boolean>(false);
 
   const { topicList, topicListStatus } = useSelector(
     (state: RootState) => state.topic
@@ -25,7 +22,7 @@ const List = () => {
     dispatch(fetchTopics());
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     dispatch(fetchTopics());
   }, []);
 

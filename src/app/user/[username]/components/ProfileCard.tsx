@@ -25,11 +25,11 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {
             {new Date(user?.createdAt).toLocaleDateString('tr-TR')}
           </span>
         </div>
-        <div className='flex items-center gap-1 text-xs'>
+        {/* <div className='flex items-center gap-1 text-xs'>
           <button className='flex items-center gap-1 rounded-md text-white p-1 bg-primary'>
             <RiUserFollowFill /> Takip Et
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );

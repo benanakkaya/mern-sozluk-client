@@ -19,6 +19,8 @@ const PaginationTool: React.FC<PropTypes> = ({
 
   const router = useRouter();
 
+  
+
   const totalPages : number = topic?.totalPages;
 
   let pages = [];
@@ -27,8 +29,8 @@ const PaginationTool: React.FC<PropTypes> = ({
     pages.push(i);
   }
 
-  const handlePage = (value: string) => {
-    setCurrentPage(Number(value));
+  const handlePage = (value: number) => {
+    setCurrentPage(value);
     router.push(`${topic?.title}?page=${value}`);
   };
 
@@ -39,7 +41,7 @@ const PaginationTool: React.FC<PropTypes> = ({
         <div className="w-full flex items-center justify-end">
           <div className="flex items-center gap-1">
             <select
-              onChange={(e: any) => handlePage(e.target.value)}
+              onChange={(e: any) => handlePage(Number(e.target.value))}
               className="bg-dark border-[1px] border-white p-1 rounded-md text-xs h-max"
             >
               {pages.map((page: number) => (
@@ -52,7 +54,7 @@ const PaginationTool: React.FC<PropTypes> = ({
               ))}
             </select>
             <span>/</span>
-            <button className="bg-dark border-[1px] border-white px-2 py-1 rounded-md text-xs h-max">
+            <button onClick={() => handlePage(totalPages)} className="bg-dark border-[1px] border-white px-2 py-1 rounded-md text-xs h-max">
               {totalPages}
             </button>
           </div>
