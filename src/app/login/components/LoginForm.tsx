@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const LoginForm = () => {
-  // const [rememberMe, setRememberMe] = useState(false);
+
   const [loginStatus, setLoginStatus] = useState<string>("idle");
 
   const dispatch = useDispatch();
@@ -43,44 +43,43 @@ const LoginForm = () => {
         .string()
         .email("Lütfen geçerli bir e-mail gir!")
         .required("e-mailin olmadan nasıl giriş yapacaksın?"),
-      password: yup.string().required("parolan nerde?"),
+      password: yup.string().required("lütfen parolanı gir!"),
     }),
   });
 
   return (
     <>
-      <form onSubmit={formik.handleSubmit} className="flex flex-col gap-4">
-        <label className="flex flex-col gap-1">
+      <form onSubmit={formik.handleSubmit} className="flex flex-col gap-6">
+        <label className="relative flex flex-col gap-1">
           e-mail:
           <input
             name="email"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             type="text"
+            placeholder="isim@mail.com"
             className="bg-customGray outline-none rounded-md px-2 py-1"
           />
           {formik.errors.email && formik.touched.email ? (
-            <span className="text-red-500 text-xs">{formik.errors.email}</span>
+            <span className="absolute top-full mt-1 text-red-500 text-xs">{formik.errors.email}</span>
           ) : null}
         </label>
-        <label className="flex flex-col gap-1">
+        <label className="relative flex flex-col gap-1">
           şifre:
           <input
             name="password"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             type="password"
+            placeholder="●●●●●●"
             className="bg-customGray outline-none rounded-md px-2 py-1"
           />
           {formik.errors.password && formik.touched.password ? (
-            <span className="text-red-500 text-xs">
+            <span className="absolute top-full mt-1 text-red-500 text-xs">
               {formik.errors.password}
             </span>
           ) : null}
         </label>
-        {/* <label className="flex gap-1">
-          <input onChange={() => setRememberMe((prev) => !prev)} type="checkbox" /> unutma bunları soracam
-        </label> */}
         <button
           disabled={loginStatus === "pending"}
           type="submit"
