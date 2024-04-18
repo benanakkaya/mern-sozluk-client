@@ -27,8 +27,8 @@ export const fetchRandomTopic = createAsyncThunk(
   "topic/get-random-topic",
   async () => {
     const res = await fetch("https://mern-sozluk-backend.onrender.com/opic/random-topic");
-    const data = await res.json(); // Veriyi bir kez alıyoruz
-    return data; // Alınan veriyi döndürüyoruz
+    const data = await res.json(); 
+    return data;
   }
 );
 
