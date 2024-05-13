@@ -1,5 +1,5 @@
 
-# Social Links
+# Mern Sozluk
 
 > This project is an eksisozluk.com clone.
 
