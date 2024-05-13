@@ -62,15 +62,25 @@
 ## Screenshots
 
  - Homepage
+   
 ![ss1](https://res.cloudinary.com/dmsj8hghq/image/upload/fl_preserve_transparency/v1715602123/FireShot_Capture_032_-_Mern_Sozluk_-_mern-sozluk.vercel.app_jegsqa.jpg)
+
  - Topic Page
-![ss2](https://res.cloudinary.com/dmsj8hghq/image/upload/fl_preserve_transparency/v1715602123/FireShot_Capture_034_-_Mern_Sozluk_-_mern-sozluk.vercel.app_viaf9i.jpg?_s=public-apps)
+   
+![ss2](https://res.cloudinary.com/dmsj8hghq/image/upload/fl_preserve_transparency/v1715602123/FireShot_Capture_034_-_Mern_Sozluk_-_mern-sozluk.vercel.app_viaf9i.jpg)
+
  - Profile Page
+   
 ![ss3](https://res.cloudinary.com/dmsj8hghq/image/upload/fl_preserve_transparency/v1715602128/FireShot_Capture_038_-_Mern_Sozluk_-_mern-sozluk.vercel.app_bbx2ys.jpg)
+
  - Login Page
-![ss4](https://res.cloudinary.com/dmsj8hghq/image/upload/fl_preserve_transparency/v1715602128/FireShot_Capture_041_-_Mern_Sozluk_-_mern-sozluk.vercel.app_dezrvj.jpg?_s=public-apps)
+   
+![ss4](https://res.cloudinary.com/dmsj8hghq/image/upload/fl_preserve_transparency/v1715602128/FireShot_Capture_041_-_Mern_Sozluk_-_mern-sozluk.vercel.app_dezrvj.jpg)
+
  - Registration page
+   
  ![ss5](https://res.cloudinary.com/dmsj8hghq/image/upload/fl_preserve_transparency/v1715602122/FireShot_Capture_042_-_Mern_Sozluk_-_mern-sozluk.vercel.app_rjlnt9.jpg)
+ 
  - Activation Page
 ![ss6](https://res.cloudinary.com/dmsj8hghq/image/upload/fl_preserve_transparency/v1715602122/FireShot_Capture_043_-_Mern_Sozluk_-_mern-sozluk.vercel.app_yagbyd.jpg)
 
